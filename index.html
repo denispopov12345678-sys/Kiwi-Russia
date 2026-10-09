@@ -1,1 +1,139 @@
-
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiwi Russia — Главная</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#0b0e0c;
+ color:#f2f5f2;
+}
+header{
+ padding:18px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ background:#111713;
+ border-bottom:1px solid #26352b;
+}
+.logo{font-size:23px;font-weight:bold;color:#8be36c}
+button{
+ cursor:pointer;
+ border:0;
+ border-radius:9px;
+ padding:12px 16px;
+ font-weight:bold;
+}
+.menu{background:#26352b;color:white;font-size:20px}
+main{max-width:800px;margin:auto;padding:22px}
+.hero{
+ margin-top:25px;
+ padding:28px 20px;
+ border:1px solid #29452c;
+ border-radius:18px;
+ background:linear-gradient(140deg,#15241a,#101310);
+}
+h1{font-size:34px;margin:0 0 12px}
+.green{color:#8be36c}
+p{color:#b8c2ba;line-height:1.6}
+.actions{display:grid;gap:12px;margin-top:25px}
+.action{
+ display:block;
+ text-decoration:none;
+ color:white;
+ background:#151c17;
+ border:1px solid #2d4031;
+ border-radius:12px;
+ padding:18px;
+}
+.action strong{display:block;color:#8be36c;font-size:17px}
+.action span{display:block;color:#b8c2ba;margin-top:7px;font-size:14px}
+footer{text-align:center;color:#778178;padding:30px;font-size:13px}
+#menuPanel{display:none;padding:15px;background:#151c17}
+#menuPanel a{color:#8be36c;margin-right:14px}
+</style>
+</head>
+<body>
+<header>
+ <div class="logo"> KIWI RUSSIA</div>
+ <button class="menu" onclick="toggleMenu()">☰</button>
+</header>
+<div id="menuPanel">
+ <a href="#home">Главная</a>
+ <a href="#applications">Заявки</a>
+</div>
+<main id="home">
+ <section class="hero">
+  <h1>Добро пожаловать в <span class="green">Kiwi Russia</span></h1>
+  <p>Игровой проект. Подавай заявку, проходи тестирование и присоединяйся к нашей команде!</p>
+  <p>Выбери направление и подготовься к подаче заявки.</p>
+ </section>
+ <section id="applications">
+  <h2>Набор в команду</h2>
+  <div class="actions">
+   <a class="action" href="#apply" onclick="choose('Лидер')">
+    <strong>Заявка на лидера</strong>
+    <span>Руководство фракцией или организацией</span>
+   </a>
+   <a class="action" href="#apply" onclick="choose('Администратор')">
+    <strong>Заявка на администратора</strong>
+    <span>Помощь игрокам и поддержание порядка</span>
+   </a>
+   <a class="action" href="#apply" onclick="choose('СС госс')">
+    <strong>Заявка на СС госс</strong>
+    <span>Руководящая должность в государственной организации</span>
+   </a>
+   <a class="action" href="#apply" onclick="choose('ОПГ')">
+    <strong>Заявка на ОПГ</strong>
+    <span>Руководящая роль в преступной группировке</span>
+   </a>
+  </div>
+ </section>
+ <section id="apply" class="hero">
+  <h2>Подача заявки</h2>
+  <form onsubmit="sendApplication(event)">
+   <label>Направление</label>
+   <select id="role" required style="display:block;width:100%;padding:12px;margin:10px 0 18px;background:#111713;color:white;border:1px solid #344638;border-radius:8px">
+    <option value="">Выбери направление</option>
+    <option>Лидер</option>
+    <option>Администратор</option>
+    <option>СС госс</option>
+    <option>ОПГ</option>
+   </select>
+   <label>Игровой ник</label>
+   <input id="nickname" required placeholder="Твой ник в игре">
+   <label>Ссылка на форумный аккаунт</label>
+   <input id="forum" type="url" required placeholder="https://...">
+   <label>Telegram username</label>
+   <input id="telegram" required placeholder="@username">
+   <button class="submit" type="submit">Проверить заявку</button>
+   <p id="message"></p>
+  </form>
+ </section>
+</main>
+<footer>Kiwi Russia © 2026</footer>
+<script>
+function toggleMenu(){
+ const m=document.getElementById('menuPanel');
+ m.style.display=m.style.display==='block'?'none':'block';
+}
+function choose(role){
+ document.getElementById('role').value=role;
+}
+function sendApplication(e){
+ e.preventDefault();
+ document.getElementById('message').textContent=
+ 'Форма заполнена. Отправка заявок будет подключена на следующем этапе.';
+}
+</script>
+<style>
+label{display:block;margin-top:12px;color:#dce7dd}
+input{display:block;width:100%;padding:13px;margin:9px 0 15px;background:#111713;color:white;border:1px solid #344638;border-radius:8px}
+.submit{background:#8be36c;color:#101510;width:100%;margin-top:15px}
+</style>
+</body>
+</html>
